@@ -42,7 +42,7 @@ const Chart = ({ data: { confirmed, recovered, deaths }, country }) => {
             ? (
                 <Bar
                     data={{
-                        labels: ['Infected', 'Recovered', 'Deaths'],
+                        labels: ['Terinfeksi', 'Sembuh', 'Meninggal'],
                         datasets: [{
                             label: 'People',
                             backgroundColor: [
@@ -55,7 +55,7 @@ const Chart = ({ data: { confirmed, recovered, deaths }, country }) => {
                     }}
                     options={{
                         legend: { display: false },
-                        title: { display: true, text: 'Current state in ' + country }
+                        title: { display: true, text: 'Kondisi saat ini di ' + country }
                     }}
                 />
             ) : null
