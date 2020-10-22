@@ -29,4 +29,14 @@ export default class Util {
         return day + ' ' + strDate + '/' + month + '/' + year;
     }
 
+    static convertCurrency(value) {
+        const str = value.toString();
+        const digit1 = str.substring(str.length - 3, str.length);
+        const sisa1 = str.replace(digit1, '');
+        const digit2 = sisa1.substring(sisa1.length - 3, sisa1.length);
+        const sisa2 = sisa1.replace(digit2, '');
+        const currencyValue = [sisa2, digit2, digit1];
+        return currencyValue.join(',');
+    }
+
 }
