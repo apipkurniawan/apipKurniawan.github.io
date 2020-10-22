@@ -3,13 +3,12 @@ import { Card, CardContent, Typography, Grid } from '@material-ui/core';
 import styles from './Cards.module.css';
 import CountUp from 'react-countup';
 import cx from 'classnames';
+import Util from '../../utility/util';
 
 const Cards = ({ data: { confirmed, recovered, deaths, lastUpdate } }) => {
     if (!confirmed) {
         return 'loading..';
     }
-
-    const convertDay = new Date(lastUpdate).toDateString();
 
     return (
         <div className={styles.container}>
@@ -20,7 +19,7 @@ const Cards = ({ data: { confirmed, recovered, deaths, lastUpdate } }) => {
                         <Typography variant="h5">
                             <CountUp start={0} end={confirmed.value} duration={2.5} separator="," />
                         </Typography>
-                        <Typography color="textSecondary">{convertDay}</Typography>
+                        <Typography color="textSecondary">{Util.getStrDate(lastUpdate)}</Typography>
                         <Typography variant="body2">Jumlah orang yang terkonfirmasi kasus covid-19</Typography>
                     </CardContent>
                 </Grid>
@@ -30,7 +29,7 @@ const Cards = ({ data: { confirmed, recovered, deaths, lastUpdate } }) => {
                         <Typography variant="h5">
                             <CountUp start={0} end={recovered.value} duration={2.5} separator="," />
                         </Typography>
-                        <Typography color="textSecondary">{convertDay}</Typography>
+                        <Typography color="textSecondary">{Util.getStrDate(lastUpdate)}</Typography>
                         <Typography variant="body2">Jumlah orang yang berhasil sembuh dari covid-19</Typography>
                     </CardContent>
                 </Grid>
@@ -40,7 +39,7 @@ const Cards = ({ data: { confirmed, recovered, deaths, lastUpdate } }) => {
                         <Typography variant="h5">
                             <CountUp start={0} end={deaths.value} duration={2.5} separator="," />
                         </Typography>
-                        <Typography color="textSecondary">{convertDay}</Typography>
+                        <Typography color="textSecondary">{Util.getStrDate(lastUpdate)}</Typography>
                         <Typography variant="body2">Jumlah orang yang meninggal karena covid-19</Typography>
                     </CardContent>
                 </Grid>
