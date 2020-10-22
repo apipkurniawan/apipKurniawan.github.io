@@ -5,40 +5,42 @@ import CountUp from 'react-countup';
 import cx from 'classnames';
 
 const Cards = ({ data: { confirmed, recovered, deaths, lastUpdate } }) => {
-    console.log('props', confirmed);
     if (!confirmed) {
         return 'loading..';
     }
+
+    const convertDay = new Date(lastUpdate).toDateString();
+
     return (
         <div className={styles.container}>
             <Grid container spacing={3} justify="center">
                 <Grid item component={Card} xs={12} md={3} className={cx(styles.card, styles.infected)}>
                     <CardContent>
-                        <Typography color="textSecondary" gutterBottom>Terkonfirmasi</Typography>
+                        <Typography className={styles.labelInfected} variant="h6" gutterBottom>Terkonfirmasi</Typography>
                         <Typography variant="h5">
                             <CountUp start={0} end={confirmed.value} duration={2.5} separator="," />
                         </Typography>
-                        <Typography color="textSecondary">{new Date(lastUpdate).toDateString()}</Typography>
+                        <Typography color="textSecondary">{convertDay}</Typography>
                         <Typography variant="body2">Jumlah orang yang terkonfirmasi kasus covid-19</Typography>
                     </CardContent>
                 </Grid>
                 <Grid item component={Card} xs={12} md={3} className={cx(styles.card, styles.recovered)}>
                     <CardContent>
-                        <Typography color="textSecondary" gutterBottom>Sembuh</Typography>
+                        <Typography className={styles.labelRecovered} variant="h6" gutterBottom>Sembuh</Typography>
                         <Typography variant="h5">
                             <CountUp start={0} end={recovered.value} duration={2.5} separator="," />
                         </Typography>
-                        <Typography color="textSecondary">{new Date(lastUpdate).toDateString()}</Typography>
+                        <Typography color="textSecondary">{convertDay}</Typography>
                         <Typography variant="body2">Jumlah orang yang berhasil sembuh dari covid-19</Typography>
                     </CardContent>
                 </Grid>
                 <Grid item component={Card} xs={12} md={3} className={cx(styles.card, styles.deaths)}>
                     <CardContent>
-                        <Typography color="textSecondary" gutterBottom>Meninggal</Typography>
+                        <Typography className={styles.labelDeaths} variant="h6" gutterBottom>Meninggal</Typography>
                         <Typography variant="h5">
                             <CountUp start={0} end={deaths.value} duration={2.5} separator="," />
                         </Typography>
-                        <Typography color="textSecondary">{new Date(lastUpdate).toDateString()}</Typography>
+                        <Typography color="textSecondary">{convertDay}</Typography>
                         <Typography variant="body2">Jumlah orang yang meninggal karena covid-19</Typography>
                     </CardContent>
                 </Grid>
